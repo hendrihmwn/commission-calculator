@@ -1,10 +1,11 @@
-from schemas.schema import SalesData, Commission, PersonResult, InputFindCommissionPoint, InputFindPerformanceIncentive
+from schemas.schema import SalesData, ProductItem, PersonResult, InputFindCommissionPoint, InputFindPerformanceIncentive
 from typing import Dict
 
 import repository.product_sales_point_repository as product_sales_point_repository
 import repository.commision_point_repository as commision_point_repository
 import repository.performance_incentive_repository as performance_incentive_repository
 
+# function to calculate commission, return dictionary
 def calculate(data: list[SalesData]) -> Dict[str, Dict[str, PersonResult]]:
     dict_result_sp: Dict[str, PersonResult] = {}
     dict_result_sm: Dict[str, PersonResult] = {}
@@ -45,20 +46,24 @@ def calculate(data: list[SalesData]) -> Dict[str, Dict[str, PersonResult]]:
     result["GM"] = dict_result_gm    
     return result
 
+# function to mapping sales point and item into each person
 def assign_sales_point(role: str, key: str, data: SalesData, result: PersonResult, dict_result: Dict[str, PersonResult]):
     product_sales = product_sales_point_repository.get_by_item(data.item)
     if result is not None:
         result.total_sales += 1
+        result.product_point += product_sales.product_point
         result.total_sales_point += product_sales.sales_point
         # calculate total sales point per item
-        commission = result.commissions.get(data.item, None)
-        if commission is not None:
-            commission.total_sales_point += product_sales.sales_point
-            commission.total_item += 1
+        product_item = result.items.get(data.item, None)
+        if product_item is not None:
+            product_item.total_sales_point += product_sales.sales_point
+            product_item.product_point += product_sales.product_point
+            product_item.total_item += 1
         else:
-            result.commissions[data.item] = Commission(
+            result.items[data.item] = ProductItem(
                 item=data.item,
                 total_item=1,
+                product_point=product_sales.product_point,
                 total_sales_point=product_sales.sales_point
             )
         
@@ -69,17 +74,19 @@ def assign_sales_point(role: str, key: str, data: SalesData, result: PersonResul
             result.list_active_sm.add(data.sm)
     else:
         # initiate sales point per item
-        commissions: Dict[str, Commission] = {}
-        commissions[data.item] = Commission(
+        product_item: Dict[str, ProductItem] = {}
+        product_item[data.item] = ProductItem(
             item=data.item, 
             total_item=1,
+            product_point=product_sales.product_point,
             total_sales_point=product_sales.sales_point)
 
         # initiate incentive data per person
         dict_result[key] = PersonResult(
             name=key,
-            commissions=commissions,
+            items=product_item,
             total_sales=1,
+            product_point=product_sales.product_point,
             total_sales_point=product_sales.sales_point,
         )
 
@@ -96,7 +103,17 @@ def assign_sales_point(role: str, key: str, data: SalesData, result: PersonResul
             list_active = dict_result[key].list_active_sm
             list_active.add(data.sm)
 
+# function to calculate commission and incentive
 def incentive_calculation(role: str, data: PersonResult):
+    # calculate basic commission
+    commission_point = commision_point_repository.get_commission_point(InputFindCommissionPoint(
+                type=role, sales_point=data.total_sales_point
+            ))
+    if commission_point is not None:
+        data.commission_point = commission_point.commission_point
+        data.basic_commission = data.product_point * data.commission_point / 100
+
+    # calculate performance incentive
     active_person = 0
     if role == "SP":
         active_person = 0
@@ -107,17 +124,6 @@ def incentive_calculation(role: str, data: PersonResult):
     if role == "GM":
         active_person = len(data.list_active_sm)
 
-    # calculate basic commission per items
-    for v in data.commissions.values():
-        product_sales = product_sales_point_repository.get_by_item(v.item)
-        commission_point = commision_point_repository.get_commission_point(InputFindCommissionPoint(
-                type=role, sales_point=v.total_sales_point
-            ))
-        if commission_point is not None:
-            v.commission_point = commission_point.commission_point
-            v.basic_commission = product_sales.product_point * v.commission_point / 100
-    
-    # calculate performance incentive
     input_data = InputFindPerformanceIncentive(
         type=role, sales_point=data.total_sales_point, active_person=active_person
     )

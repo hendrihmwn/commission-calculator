@@ -36,17 +36,19 @@ class SalesData(BaseModel):
     gm: str
     item: str
 
-class Commission(BaseModel):
+class ProductItem(BaseModel):
     item: str
     total_item: int
     total_sales_point: int
-    commission_point: int = 0
-    basic_commission: float = 0
+    product_point: int = 0
 
 class PersonResult(BaseModel):
     name: str
     total_sales: int = 0
-    commissions: dict[str, Commission]
+    items: dict[str, ProductItem]
+    product_point: int = 0
+    commission_point: int = 0
+    basic_commission: float = 0
     total_sales_point: int
     sm: str = ""
     gm: str = ""
@@ -56,7 +58,7 @@ class PersonResult(BaseModel):
 
 class ResponseCalculation(BaseModel):
     name: str
-    commissions: Commission
+    items: ProductItem
     total_sales_point: int
     total_active: int
     performance_incentive: int

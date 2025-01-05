@@ -81,11 +81,14 @@
                 <thead class="table-light fw-bolder">
                     <tr>
                         <th class="align-middle text-center" rowspan="2">Name</th>
-                        <th class="align-middle text-center table-danger" colspan="3">Red Commission</th>
-                        <th class="align-middle text-center table-primary" colspan="3">Blue Commission</th>
-                        <th class="align-middle text-center table-warning" colspan="3">Yellow Commission</th>
+                        <th class="align-middle text-center table-danger" colspan="2">Red Commission</th>
+                        <th class="align-middle text-center table-primary" colspan="2">Blue Commission</th>
+                        <th class="align-middle text-center table-warning" colspan="2">Yellow Commission</th>
+                        <th class="align-middle text-center" rowspan="2">
+                            Commission Point
+                        </th>
                         <th class="align-middle text-center" rowspan="2">Basic Commission
-                            <p class="align-top" data-toggle="tooltip" data-placement="top" title="red commission + blue commission + yellow commission">
+                            <p class="align-top" data-toggle="tooltip" data-placement="top" title="total product point x commission point / 100">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
                                     <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"></path>
                                 </svg>
@@ -103,46 +106,26 @@
                     </tr>
                     <tr>
                         <th class="table-danger align-middle text-center" scope="col">sales point</th>
-                        <th class="table-danger align-middle text-center" scope="col">commision point</th>
-                        <th class="table-danger align-middle text-center" scope="col">commission
-                            <p class="align-top" data-toggle="tooltip" data-placement="top" title="Rp 7.500 x red commission point / 100">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
-                                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"></path>
-                                </svg>
-                            </p>
-                        </th>
+                        <th class="table-danger align-middle text-center" scope="col">total product point</th>
+                        
                         <th class="table-primary align-middle text-center" scope="col">sales point</th>
-                        <th class="table-primary align-middle text-center" scope="col">commision point</th>
-                        <th class="table-primary align-middle text-center" scope="col">commission
-                            <p class="align-top" data-toggle="tooltip" data-placement="top" title="Rp 10.000 x blue commission point / 100">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
-                                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"></path>
-                                </svg>
-                            </p>
-                        </th>
+                        <th class="table-primary align-middle text-center" scope="col">total product point</th>
+                        
                         <th class="table-warning align-middle text-center" scope="col">sales point</th>
-                        <th class="table-warning align-middle text-center" scope="col">commision point</th>
-                        <th class="table-warning align-middle text-center" scope="col">commission
-                            <p class="align-top" data-toggle="tooltip" data-placement="top" title="Rp 25.000 x yellow commission point / 100">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
-                                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"></path>
-                                </svg>
-                            </p>
-                        </th>
+                        <th class="table-warning align-middle text-center" scope="col">total product point</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="sp in commission_sp">
                         <td>{{ sp.name }}</td>
                         <td class="text-end table-danger">{{ sp.red_total_sales_point }}</td>
-                        <td class="text-end table-danger">{{ sp.red_commission_point }}</td>
-                        <td class="text-end table-danger">{{ sp.red_basic_commission }}</td>
+                        <td class="text-end table-danger">{{ sp.red_product_point }}</td>
                         <td class="text-end table-primary">{{ sp.blue_total_sales_point }}</td>
-                        <td class="text-end table-primary">{{ sp.blue_commission_point }}</td>
-                        <td class="text-end table-primary">{{ sp.blue_basic_commission }}</td>
+                        <td class="text-end table-primary">{{ sp.blue_product_point }}</td>
                         <td class="text-end table-warning">{{ sp.yellow_total_sales_point }}</td>
-                        <td class="text-end table-warning">{{ sp.yellow_commission_point }}</td>
-                        <td class="text-end table-warning">{{ sp.yellow_basic_commission }}</td>
+                        <td class="text-end table-warning">{{ sp.yellow_product_point }}</td>
+                        <td class="text-end">{{ sp.commission_point }}</td>
                         <td class="text-end">{{ sp.basic_commission }}</td>
                         <td class="text-end">{{ sp.total_sales_point }}</td>
                         <td class="text-end">{{ sp.performance_incentive }}</td>
@@ -161,11 +144,14 @@
                 <thead class="table-light fw-bolder">
                     <tr>
                         <th class="align-middle text-center" rowspan="2">Name</th>
-                        <th class="align-middle text-center table-danger" colspan="3">Red Commission</th>
-                        <th class="align-middle text-center table-primary" colspan="3">Blue Commission</th>
-                        <th class="align-middle text-center table-warning" colspan="3">Yellow Commission</th>
+                        <th class="align-middle text-center table-danger" colspan="2">Red Commission</th>
+                        <th class="align-middle text-center table-primary" colspan="2">Blue Commission</th>
+                        <th class="align-middle text-center table-warning" colspan="2">Yellow Commission</th>
+                        <th class="align-middle text-center" rowspan="2">
+                            Commission Point
+                        </th>
                         <th class="align-middle text-center" rowspan="2">Basic Commission
-                            <p class="align-top" data-toggle="tooltip" data-placement="top" title="red commission + blue commission + yellow commission">
+                            <p class="align-top" data-toggle="tooltip" data-placement="top" title="total product point x commission point / 100">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
                                     <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"></path>
                                 </svg>
@@ -184,46 +170,26 @@
                     </tr>
                     <tr>
                         <th class="table-danger align-middle text-center" scope="col">sales point</th>
-                        <th class="table-danger align-middle text-center" scope="col">commision point</th>
-                        <th class="table-danger align-middle text-center" scope="col">commission
-                            <p class="align-top" data-toggle="tooltip" data-placement="top" title="Rp 7.500 x red commission point / 100">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
-                                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"></path>
-                                </svg>
-                            </p>
-                        </th>
+                        <th class="table-danger align-middle text-center" scope="col">total product point</th>
+                        
                         <th class="table-primary align-middle text-center" scope="col">sales point</th>
-                        <th class="table-primary align-middle text-center" scope="col">commision point</th>
-                        <th class="table-primary align-middle text-center" scope="col">commission
-                            <p class="align-top" data-toggle="tooltip" data-placement="top" title="Rp 10.000 x blue commission point / 100">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
-                                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"></path>
-                                </svg>
-                            </p>
-                        </th>
+                        <th class="table-primary align-middle text-center" scope="col">total product point</th>
+                        
                         <th class="table-warning align-middle text-center" scope="col">sales point</th>
-                        <th class="table-warning align-middle text-center" scope="col">commision point</th>
-                        <th class="table-warning align-middle text-center" scope="col">commission
-                            <p class="align-top" data-toggle="tooltip" data-placement="top" title="Rp 25.000 x yellow commission point / 100">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
-                                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"></path>
-                                </svg>
-                            </p>
-                        </th>
+                        <th class="table-warning align-middle text-center" scope="col">total product point</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="sm in commission_sm">
                         <td>{{ sm.name }}</td>
                         <td class="text-end table-danger">{{ sm.red_total_sales_point }}</td>
-                        <td class="text-end table-danger">{{ sm.red_commission_point }}</td>
-                        <td class="text-end table-danger">{{ sm.red_basic_commission }}</td>
+                        <td class="text-end table-danger">{{ sm.red_product_point }}</td>
                         <td class="text-end table-primary">{{ sm.blue_total_sales_point }}</td>
-                        <td class="text-end table-primary">{{ sm.blue_commission_point }}</td>
-                        <td class="text-end table-primary">{{ sm.blue_basic_commission }}</td>
+                        <td class="text-end table-primary">{{ sm.blue_product_point }}</td>
                         <td class="text-end table-warning">{{ sm.yellow_total_sales_point }}</td>
-                        <td class="text-end table-warning">{{ sm.yellow_commission_point }}</td>
-                        <td class="text-end table-warning">{{ sm.yellow_basic_commission }}</td>
+                        <td class="text-end table-warning">{{ sm.yellow_product_point }}</td>
+                        <td class="text-end">{{ sm.commission_point }}</td>
                         <td class="text-end">{{ sm.basic_commission }}</td>
                         <td class="text-end">{{ sm.total_sales_point }}</td>
                         <td class="text-end">{{ sm.total_active_sp }}</td>
@@ -243,11 +209,14 @@
                 <thead class="table-light fw-bolder">
                     <tr>
                         <th class="align-middle text-center" rowspan="2">Name</th>
-                        <th class="align-middle text-center table-danger" colspan="3">Red Commission</th>
-                        <th class="align-middle text-center table-primary" colspan="3">Blue Commission</th>
-                        <th class="align-middle text-center table-warning" colspan="3">Yellow Commission</th>
+                        <th class="align-middle text-center table-danger" colspan="2">Red Commission</th>
+                        <th class="align-middle text-center table-primary" colspan="2">Blue Commission</th>
+                        <th class="align-middle text-center table-warning" colspan="2">Yellow Commission</th>
+                        <th class="align-middle text-center" rowspan="2">
+                            Commission Point
+                        </th>
                         <th class="align-middle text-center" rowspan="2">Basic Commission
-                            <p class="align-top" data-toggle="tooltip" data-placement="top" title="red commission + blue commission + yellow commission">
+                            <p class="align-top" data-toggle="tooltip" data-placement="top" title="total product point x commission point / 100">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
                                     <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"></path>
                                 </svg>
@@ -266,46 +235,26 @@
                     </tr>
                     <tr>
                         <th class="table-danger align-middle text-center" scope="col">sales point</th>
-                        <th class="table-danger align-middle text-center" scope="col">commision point</th>
-                        <th class="table-danger align-middle text-center" scope="col">commission
-                            <p class="align-top" data-toggle="tooltip" data-placement="top" title="Rp 7.500 x red commission point / 100">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
-                                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"></path>
-                                </svg>
-                            </p>
-                        </th>
+                        <th class="table-danger align-middle text-center" scope="col">total product point</th>
+                        
                         <th class="table-primary align-middle text-center" scope="col">sales point</th>
-                        <th class="table-primary align-middle text-center" scope="col">commision point</th>
-                        <th class="table-primary align-middle text-center" scope="col">commission
-                            <p class="align-top" data-toggle="tooltip" data-placement="top" title="Rp 10.000 x blue commission point / 100">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
-                                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"></path>
-                                </svg>
-                            </p>
-                        </th>
+                        <th class="table-primary align-middle text-center" scope="col">total product point</th>
+                        
                         <th class="table-warning align-middle text-center" scope="col">sales point</th>
-                        <th class="table-warning align-middle text-center" scope="col">commision point</th>
-                        <th class="table-warning align-middle text-center" scope="col">commission
-                            <p class="align-top" data-toggle="tooltip" data-placement="top" title="Rp 25.000 x yellow commission point / 100">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
-                                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"></path>
-                                </svg>
-                            </p>
-                        </th>
+                        <th class="table-warning align-middle text-center" scope="col">total product point</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="gm in commission_gm">
                         <td>{{ gm.name }}</td>
                         <td class="text-end table-danger">{{ gm.red_total_sales_point }}</td>
-                        <td class="text-end table-danger">{{ gm.red_commission_point }}</td>
-                        <td class="text-end table-danger">{{ gm.red_basic_commission }}</td>
+                        <td class="text-end table-danger">{{ gm.red_product_point }}</td>
                         <td class="text-end table-primary">{{ gm.blue_total_sales_point }}</td>
-                        <td class="text-end table-primary">{{ gm.blue_commission_point }}</td>
-                        <td class="text-end table-primary">{{ gm.blue_basic_commission }}</td>
+                        <td class="text-end table-primary">{{ gm.blue_product_point }}</td>
                         <td class="text-end table-warning">{{ gm.yellow_total_sales_point }}</td>
-                        <td class="text-end table-warning">{{ gm.yellow_commission_point }}</td>
-                        <td class="text-end table-warning">{{ gm.yellow_basic_commission }}</td>
+                        <td class="text-end table-warning">{{ gm.yellow_product_point }}</td>
+                        <td class="text-end">{{ gm.commission_point }}</td>
                         <td class="text-end">{{ gm.basic_commission }}</td>
                         <td class="text-end">{{ gm.total_sales_point }}</td>
                         <td class="text-end">{{ gm.total_active_sm }}</td>
@@ -641,43 +590,34 @@
                     total_active_sm: c.list_active_sm.length,
                     red_total_item: "",
                     red_total_sales_point: "",
-                    red_commission_point: "",
-                    red_basic_commission: "",
+                    red_product_point: "",
                     blue_total_item: "",
                     blue_total_sales_point: "",
-                    blue_commission_point: "",
-                    blue_basic_commission: "",
+                    blue_product_point: "",
                     yellow_total_item: "",
                     yellow_total_sales_point: "",
-                    yellow_commission_point: "",
-                    yellow_basic_commission: "",
+                    yellow_product_point: "",
 
                 };
-                var basic_commission = 0;
-                Object.values(c.commissions).forEach(c => {
-                    basic_commission += c.basic_commission
-                });
-                if(c.commissions.red){
-                    value["red_total_item"] = c.commissions.red.total_item;
-                    value["red_total_sales_point"] = c.commissions.red.total_sales_point;
-                    value["red_commission_point"] = c.commissions.red.commission_point;
-                    value["red_basic_commission"] = this.formatRupiah(c.commissions.red.basic_commission);
+
+                if(c.items.red){
+                    value["red_total_item"] = c.items.red.total_item;
+                    value["red_total_sales_point"] = c.items.red.total_sales_point;
+                    value["red_product_point"] = this.formatRupiah(c.items.red.product_point);
                 }
-                if(c.commissions.blue){
-                    value["blue_total_item"] = c.commissions.blue.total_item;
-                    value["blue_total_sales_point"] = c.commissions.blue.total_sales_point;
-                    value["blue_commission_point"] = c.commissions.blue.commission_point;
-                    value["blue_basic_commission"] = this.formatRupiah(c.commissions.blue.basic_commission);
+                if(c.items.blue){
+                    value["blue_total_item"] = c.items.blue.total_item;
+                    value["blue_total_sales_point"] = c.items.blue.total_sales_point;
+                    value["blue_product_point"] = this.formatRupiah(c.items.blue.product_point);
                 }
-                if(c.commissions.yellow){
-                    value["yellow_total_item"] = c.commissions.yellow.total_item;
-                    value["yellow_total_sales_point"] = c.commissions.yellow.total_sales_point;
-                    value["yellow_commission_point"] = c.commissions.yellow.commission_point;
-                    value["yellow_basic_commission"] = this.formatRupiah(c.commissions.yellow.basic_commission);
+                if(c.items.yellow){
+                    value["yellow_total_item"] = c.items.yellow.total_item;
+                    value["yellow_total_sales_point"] = c.items.yellow.total_sales_point;
+                    value["yellow_product_point"] = this.formatRupiah(c.items.yellow.product_point);
                 }
                 
-                value["basic_commission"] = this.formatRupiah(basic_commission);
-                value["total_commission"] = this.formatRupiah(basic_commission + c.performance_incentive)
+                value["basic_commission"] = this.formatRupiah(c.basic_commission);
+                value["total_commission"] = this.formatRupiah(c.basic_commission + c.performance_incentive)
                 model.push(value)
             });
       },
